@@ -20,12 +20,16 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    this.getAllAnimals()
+    this.seenInJungle()
+  }
+
+  getAllAnimals = () => {
     axios.get('http://localhost:4567/Animals').then(response => {
       this.setState({
         allAnimals: response.data
       })
     })
-    this.seenInJungle()
   }
 
   seenInJungle = () => {
@@ -34,6 +38,12 @@ class App extends Component {
       this.setState({
         jungleAnimals: response.data
       })
+    })
+  }
+
+  deleteDesertAnimals = () => {
+    axios.delete('http://localhost:4567/Animals/desert').then(response => {
+      this.getAllAnimals()
     })
   }
 
@@ -58,7 +68,8 @@ class App extends Component {
             </p>
           )
         })}
-        <p>Delete all the animals in the desert.</p>
+        <p>Delete all the animals in the desert!</p>
+        <button onClick={this.deleteDesertAnimals}>Delete</button>
         <p>The total number of animals seen today is:</p>
         <p>
           The total number of times Lions, Tigers, and Bears have been seen
