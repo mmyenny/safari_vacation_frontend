@@ -7,8 +7,8 @@ import axios from 'axios'
 //  [x]Display all animals the user has seen
 //  [x]Display all animals seen in the Jungle
 //  [x]Remove all animals that I have seen in the Desert.
-//  []Add all the CountOfTimesSeen and get a total number of animals seen
-//  []Get the CountOfTimesSeen of lions, tigers and bears
+//  [x]Add all the CountOfTimesSeen and get a total number of animals seen
+//  [x]Get the CountOfTimesSeen of lions, tigers and bears
 
 class App extends Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Welcome to the Safari!</h1>
-        <p>Here's a list of all the animals seen today!</p>
+        <h4>Here's a list of all the animals seen today!</h4>
         {this.state.allAnimals.map((animal, index) => {
           // console.log(animal.species)
           return (
@@ -80,7 +80,7 @@ class App extends Component {
             </p>
           )
         })}
-        <p>Here are all the animals seen in the jungle today!</p>
+        <h4>Here are all the animals seen in the jungle today!</h4>
         {this.state.jungleAnimals.map((jungleAnimal, index) => {
           return (
             <p className="animalList" key={index}>
@@ -88,14 +88,14 @@ class App extends Component {
             </p>
           )
         })}
-        <p>Delete all the animals in the desert!</p>
+        <h4>Delete all the animals in the desert!</h4>
         <button onClick={this.deleteDesertAnimals}>Delete</button>
-        <p>The total number of animals seen today is:</p>
+        <h4>The total number of animals seen today is:</h4>
         <p>{this.state.totalCount}</p>
-        <p>
+        <h4>
           The total number of times Lions, Tigers, and Bears have been seen
           today is:
-        </p>
+        </h4>
         <p>{this.state.totalCountLTB}</p>
       </div>
     )

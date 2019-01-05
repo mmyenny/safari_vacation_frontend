@@ -1,11 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two');
+
 html {
-  background-color: rgb(1, 110, 1);
+  background: linear-gradient(#ba5528, #eb9e38) no-repeat;
+  background-size: contain;
+  font-size: 20px;
+  color: rgb(43, 31, 31);
 }
 
 .App {
   text-align: center;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 50px;
+  margin: 10px;
+}
+
+h4 {
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 25px;
+  margin: 5px;
 }
 
 .animalList {
   text-transform: capitalize;
+  margin: 5px;
+}
+
+button {
+  margin: 10px;
+  color: black;
+  font-size: 15px;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
 }
