@@ -1,7 +1,8 @@
-h1 {
-  text-align: center;
+html {
+  background-color: rgb(1, 110, 1);
 }
-p {
+
+.App {
   text-align: center;
 }
 

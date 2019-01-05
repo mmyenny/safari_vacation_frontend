@@ -6,7 +6,7 @@ import axios from 'axios'
 // The react app should:
 //  [x]Display all animals the user has seen
 //  [x]Display all animals seen in the Jungle
-//  []Remove all animals that I have seen in the Desert.
+//  [x]Remove all animals that I have seen in the Desert.
 //  []Add all the CountOfTimesSeen and get a total number of animals seen
 //  []Get the CountOfTimesSeen of lions, tigers and bears
 
@@ -15,13 +15,17 @@ class App extends Component {
     super(props)
     this.state = {
       allAnimals: [],
-      jungleAnimals: []
+      jungleAnimals: [],
+      totalCount: '',
+      totalCountLTB: ''
     }
   }
 
   componentDidMount = () => {
     this.getAllAnimals()
     this.seenInJungle()
+    this.totalAnimalCount()
+    this.totalCountOfLTB()
   }
 
   getAllAnimals = () => {
@@ -47,9 +51,25 @@ class App extends Component {
     })
   }
 
+  totalAnimalCount = () => {
+    axios.get('http://localhost:4567/Count').then(response => {
+      this.setState({
+        totalCount: response.data
+      })
+    })
+  }
+
+  totalCountOfLTB = () => {
+    axios.get('http://localhost:4567/Countofltb').then(response => {
+      this.setState({
+        totalCountLTB: response.data
+      })
+    })
+  }
+
   render() {
     return (
-      <div>
+      <div className="App">
         <h1>Welcome to the Safari!</h1>
         <p>Here's a list of all the animals seen today!</p>
         {this.state.allAnimals.map((animal, index) => {
@@ -71,10 +91,12 @@ class App extends Component {
         <p>Delete all the animals in the desert!</p>
         <button onClick={this.deleteDesertAnimals}>Delete</button>
         <p>The total number of animals seen today is:</p>
+        <p>{this.state.totalCount}</p>
         <p>
           The total number of times Lions, Tigers, and Bears have been seen
           today is:
         </p>
+        <p>{this.state.totalCountLTB}</p>
       </div>
     )
   }
