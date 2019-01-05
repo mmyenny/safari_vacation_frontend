@@ -3,11 +3,19 @@ import React, { Component } from 'react'
 import './App.css'
 import axios from 'axios'
 
+// The react app should:
+//  [x]Display all animals the user has seen
+//  [x]Display all animals seen in the Jungle
+//  []Remove all animals that I have seen in the Desert.
+//  []Add all the CountOfTimesSeen and get a total number of animals seen
+//  []Get the CountOfTimesSeen of lions, tigers and bears
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      allAnimals: []
+      allAnimals: [],
+      jungleAnimals: []
     }
   }
 
@@ -16,7 +24,16 @@ class App extends Component {
       this.setState({
         allAnimals: response.data
       })
-      console.log(this.state.allAnimals)
+    })
+    this.seenInJungle()
+  }
+
+  seenInJungle = () => {
+    axios.get('http://localhost:4567/Animal/jungle').then(response => {
+      // console.log(response.data)
+      this.setState({
+        jungleAnimals: response.data
+      })
     })
   }
 
@@ -34,6 +51,13 @@ class App extends Component {
           )
         })}
         <p>Here are all the animals seen in the jungle today!</p>
+        {this.state.jungleAnimals.map((jungleAnimal, index) => {
+          return (
+            <p className="animalList" key={index}>
+              {jungleAnimal.species}
+            </p>
+          )
+        })}
         <p>Delete all the animals in the desert.</p>
         <p>The total number of animals seen today is:</p>
         <p>
